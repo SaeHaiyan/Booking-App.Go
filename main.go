@@ -40,26 +40,45 @@ func main(){
 		fmt.Println("Enter The Number of tickets you want to book: ")
 		fmt.Scan(&userTickets)
 
-		remainingTickets = remainingTickets - userTickets
-		bookings = append(bookings, userName)
+		isValidName := len(userName) >= 3
+		isValidEmail := strings.Contains(email, "@")
+		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
 
-		fmt.Printf("Thankyou %v for booking %v ticket with us! You will receive a confirmation email soon.\n", userName, userTickets)
-		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+		if isValidName && isValidEmail && isValidTicketNumber{
 
-		userNames := []string{}
-		for _, booking := range bookings {
+			remainingTickets = remainingTickets - userTickets
+			bookings = append(bookings, userName)
 
-			var names = strings.Fields(booking)
-			userNames = append(userNames, names[0])
+			fmt.Printf("Thankyou %v for booking %v ticket with us! You will receive a confirmation email soon.\n", userName, userTickets)
+			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+
+			userNames := []string{}
+			for _, booking := range bookings {
+
+				var names = strings.Fields(booking)
+				userNames = append(userNames, names[0])
+			}
+			fmt.Printf("The names of the bookings are: %v\n", userName)
+
+			if remainingTickets == 0 {
+				//end program
+				fmt.Println("Our Conference is booked out. Come again Next Year.")
+				break
+			}
+		} else {
+
+			if !isValidName {
+				fmt.Println("Name entered is too short, need to be 3 or more characters")
+			}
+			if !isValidEmail {
+				fmt.Println("Email address not valid, must contain '@' sign")
+			}
+			if !isValidTicketNumber {
+				fmt.Println("Number of ticket entered is invalid.")
+			}
+			fmt.Printf("Your input data is invalid, Try Again")
+			continue
 		}
-		fmt.Printf("The names of the bookings are: %v\n", userName)
-
-		if remainingTickets == 0 {
-			//end program
-			fmt.Println("Our Conference is booked out. Come again Next Year.")
-			break
-		}
-		 
 	}
 }
 
