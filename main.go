@@ -12,13 +12,15 @@ func main(){
 	var remainingTickets uint = 50
 	bookings := []string{}
 
+	greetUsers(conferenceName, conferenceTickets, remainingTickets)
+
 	// fmt.Println("Welcome to", conferenceName, "Booking App")
-	fmt.Printf("Welcome to %v Booking Application!!\n", conferenceName)
+	// fmt.Printf("Welcome to %v Booking Application!!\n", conferenceName)
 
-	// fmt.Println("We have total of", conferenceTickets, "tickets and", remainingTickets, "are still available.")
-	fmt.Printf("We have total of %v tickets and %v are still available.\n", conferenceTickets, remainingTickets)
+	// // fmt.Println("We have total of", conferenceTickets, "tickets and", remainingTickets, "are still available.")
+	// fmt.Printf("We have total of %v tickets and %v are still available.\n", conferenceTickets, remainingTickets)
 
-	fmt.Println("Get Your tickets now!")
+	// fmt.Println("Get Your tickets now!")
 
 	for {
 		// Ask for user details and number of tickets they want to book
@@ -81,6 +83,13 @@ func main(){
 		}
 	}
 }
+
+func greetUsers(confName string, confTickets int, remainingTickets uint) {
+	fmt.Printf("Welcome to %v Booking Application!!\n", confName)
+	fmt.Printf("We have total of %v tickets and %v are still available.\n", confTickets, remainingTickets)
+	fmt.Println("Get Your tickets now!")
+}
+	
 
 
 
